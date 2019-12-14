@@ -34,6 +34,11 @@ public class WordRepositoryImpl implements WordRepository {
     }
 
     @Override
+    public Word findBy(Integer id) {
+        return null;
+    }
+
+    @Override
     public boolean isExist(String name) {
         try {
             PreparedStatement st = connection.prepareStatement(SQL_CHECK_WORD);

@@ -6,4 +6,5 @@ public interface CrudRepository<T> {
     void save(T t);
     void delete(Integer id);
     List<T> findAll();
+    T findBy(Integer id);
 }
