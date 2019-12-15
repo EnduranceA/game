@@ -1,5 +1,10 @@
 package handler;
 
+import helper.JSONService;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import service.WordService;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,6 +15,12 @@ public class RoomHandler extends Thread{
 
     private Socket client1;
     private Socket client2;
+
+    //главное слово
+    private String mainWord;
+
+    private WordService wordService;
+    private JSONService jsonService;
 
     //ввод и вывод данных для 1 клиента
     private PrintWriter out1;
@@ -28,6 +39,9 @@ public class RoomHandler extends Thread{
 
            this.out2 = new PrintWriter(client1.getOutputStream(), true);
            this.in2 = new BufferedReader(new InputStreamReader(client1.getInputStream()));
+
+           this.jsonService = new JSONService();
+           this.wordService = new WordService();
            this.start();
        }
        catch (IOException e) {
@@ -38,6 +52,13 @@ public class RoomHandler extends Thread{
 
     @Override
     public void run() {
+        //генерируем главное слово для игры
+        mainWord = wordService.getMainWord().getName();
 
+        //отправляем игрокам сгенерированное слово
+        String jsonMainWord = jsonService.sendMainWord(mainWord);
+        out1.println(jsonMainWord);
+        out2.println(jsonMainWord);
     }
+
 }

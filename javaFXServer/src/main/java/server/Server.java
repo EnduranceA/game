@@ -2,6 +2,10 @@ package server;
 
 import com.beust.jcommander.JCommander;
 import handler.RoomHandler;
+import repositories.MainWordRepository;
+import repositories.MainWordRepositoryImpl;
+import repositories.WordRepository;
+import repositories.WordRepositoryImpl;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -15,6 +19,8 @@ import java.util.Properties;
 public class Server {
 
     public static Connection connection;
+    public static MainWordRepository mainWordRepository;
+    public static WordRepository wordRepository;
 
     public static void main(String[] args) {
         try {
@@ -31,7 +37,8 @@ public class Server {
             String url = properties.getProperty("db.url");
 
             connection = DriverManager.getConnection(url, username, password);
-            //TODO: подключить репозитории
+            mainWordRepository = new MainWordRepositoryImpl();
+            wordRepository = new WordRepositoryImpl();
 
             ServerSocket serverSocket = new ServerSocket(argv.port);
             Socket clientSocket1; Socket clientSocket2;
@@ -39,15 +46,12 @@ public class Server {
                 try {
                     clientSocket1 = serverSocket.accept();
                     clientSocket2 = serverSocket.accept();
-                    System.out.println("Successful connection");
                     new RoomHandler(clientSocket1, clientSocket2);
                 } catch (IOException e) {
                     throw new IllegalArgumentException(e);
                 }
             }
-        } catch (IOException e) {
-            throw new IllegalArgumentException(e);
-        } catch (SQLException e) {
+        } catch (IOException | SQLException e) {
             throw new IllegalArgumentException(e);
         }
 

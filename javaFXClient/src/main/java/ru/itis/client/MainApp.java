@@ -1,4 +1,4 @@
-package ru.itis;
+package ru.itis.client;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +21,7 @@ public class MainApp extends Application {
         //primaryStage - графическое окно с несколькими scene
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
         Scene scene = new Scene(root);
-        scene.getStylesheets().add("/styles/Styles.css");
+        scene.getStylesheets().add("/styles/styles.css");
 
         //setResizable(false) - для того, чтобы нельзя было поменять размер окна
         primaryStage.setResizable(false);

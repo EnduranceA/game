@@ -1,4 +1,4 @@
-package ru.itis;
+package ru.itis.controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -12,10 +12,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import ru.itis.client.MainApp;
 
 public class MenuFXMLController implements Initializable {
 
     private Stage primaryStage;
+    public static String name;
 
     @FXML
     public TextField userName;
@@ -36,11 +38,12 @@ public class MenuFXMLController implements Initializable {
 
     @FXML
     public void onClickPlay(ActionEvent event) throws IOException {
+        name = userName.getText();
         //загружаем сцену для комнаты
         Parent root = FXMLLoader.load(getClass().getResource("/fxml/room.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("GAME STARTED");
+        primaryStage.setTitle("GAME");
         primaryStage.show();
     }
 }
