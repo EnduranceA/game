@@ -16,7 +16,7 @@ public class WordService {
     }
 
     public MainWord getMainWord() {
-        int number = (int) (Math.random() * 30);
+        int number = (int) (Math.random() * 15);
         return mainWordRepository.findBy(number);
     }
 }

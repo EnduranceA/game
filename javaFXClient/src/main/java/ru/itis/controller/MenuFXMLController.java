@@ -33,17 +33,17 @@ public class MenuFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        this.primaryStage = MainApp.stage;
+        this.primaryStage = MainApp.primaryStage;
     }
 
     @FXML
     public void onClickPlay(ActionEvent event) throws IOException {
         name = userName.getText();
         //загружаем сцену для комнаты
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/room.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/expectation.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
-        primaryStage.setTitle("GAME");
+        primaryStage.setTitle("Waiting");
         primaryStage.show();
     }
 }

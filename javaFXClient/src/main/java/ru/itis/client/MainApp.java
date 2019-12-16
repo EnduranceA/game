@@ -9,7 +9,11 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    public static Stage stage;
+    public static Stage primaryStage;
+
+    //все сцены
+    private static Parent menu;
+    private static Parent room;
 
     public static void main(String[] args) {
         launch(args);
@@ -17,10 +21,10 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        stage = primaryStage;
+        MainApp.primaryStage = primaryStage;
         //primaryStage - графическое окно с несколькими scene
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
-        Scene scene = new Scene(root);
+        menu = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
+        Scene scene = new Scene(menu);
         scene.getStylesheets().add("/styles/styles.css");
 
         //setResizable(false) - для того, чтобы нельзя было поменять размер окна
@@ -33,5 +37,4 @@ public class MainApp extends Application {
         primaryStage.sizeToScene();
         primaryStage.show();
     }
-
 }

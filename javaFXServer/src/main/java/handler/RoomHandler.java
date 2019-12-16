@@ -37,7 +37,7 @@ public class RoomHandler extends Thread{
            this.out1 = new PrintWriter(client1.getOutputStream(), true);
            this.in1 = new BufferedReader(new InputStreamReader(client1.getInputStream()));
 
-           this.out2 = new PrintWriter(client1.getOutputStream(), true);
+           this.out2 = new PrintWriter(client2.getOutputStream(), true);
            this.in2 = new BufferedReader(new InputStreamReader(client1.getInputStream()));
 
            this.jsonService = new JSONService();
@@ -59,6 +59,12 @@ public class RoomHandler extends Thread{
         String jsonMainWord = jsonService.sendMainWord(mainWord);
         out1.println(jsonMainWord);
         out2.println(jsonMainWord);
-    }
 
+        //отправляем информацию о начале игры
+        String jsonStartGame = jsonService.getCommandStartGame();
+        out1.println(jsonStartGame);
+        System.out.println("first");
+        out2.println(jsonStartGame);
+        System.out.println("second");
+    }
 }

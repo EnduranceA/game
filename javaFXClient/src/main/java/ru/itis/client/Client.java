@@ -1,5 +1,10 @@
 package ru.itis.client;
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -12,7 +17,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Client extends Thread {
+public class Client  {
 
     private final int PORT = 1337;
     private String host = "localhost";
@@ -25,6 +30,7 @@ public class Client extends Thread {
     private ResponseService responseService;
 
     public static String mainWord;
+    private Stage primaryStage;
 
     //для обозначения состояния игрока(текущего хода)
     public static boolean status ;
@@ -37,6 +43,7 @@ public class Client extends Thread {
             this.userName = MenuFXMLController.name;
             this.requestService = new RequestService();
             this.responseService = new ResponseService();
+            this.primaryStage = MainApp.primaryStage;
             //1 означает, что игрок ходит первым
 //            status = Integer.parseInt(in.readLine()) == 1;
         } catch (IOException e) {
@@ -50,40 +57,31 @@ public class Client extends Thread {
         private JSONService jsonService;
 
         public RequestService() {
-            jsonService = new JSONService();
+            this.jsonService = new JSONService();
             this.start();
         }
 
         @Override
         public void run() {
-            try {
-                while (true) {
-                    String str = reader.readLine();
-                    readRequest(str);
-                }
-            } catch (IOException e) {
-                throw new IllegalArgumentException(e);
-            }
+            //TODO: отправить имя игрока на сервер
+//            try {
+//                while (true) {
+//                    String str = reader.readLine();
+//                    readRequest(str);
+//                }
+//            } catch (IOException e) {
+//                throw new IllegalArgumentException(e);
+//            }
         }
 
         private void readRequest(String str) {
-            try {
-                switch (str) {
-                    case ("login"):
-//                        System.out.print("YOUR LOGIN: ");
-//                        String login = reader.readLine();
-//                        System.out.print("YOUR PASSWORD: ");
-//                        String password = reader.readLine();
-//                        writer.println(jsonService.getLoginJSON(login, password));
-                        break;
-                    case ("quit"):
-                        stopThread();
-                        break;
-                }
-            }
-            catch (IOException e) {
-                stopThread();
-            }
+//            try {
+//                switch (str) {
+//                    case ("login"):
+//
+//                }
+//            }
+
         }
     }
 
@@ -115,9 +113,33 @@ public class Client extends Thread {
             JSONObject object;
             try {
                 object = (JSONObject) jsonParser.parse(json);
+                JSONObject payload = (JSONObject) jsonParser.parse(object.get("payload").toString());
                 switch (object.get("header").toString()){
-                    case ("main word"):
-                        String mainWord = object.get("word").toString();
+                    case ("command"):
+                        //определяем, какая команда
+                        switch (payload.get("command").toString()) {
+                            case ("get main word"):
+                                mainWord = payload.get("word").toString();
+                                break;
+                            case ("start game"):
+                                Platform.runLater(new Runnable(){
+                                    @Override
+                                    public void run() {
+                                        Parent root = null;
+                                        try {
+                                            root = FXMLLoader.load(getClass().getResource("/fxml/room.fxml"));
+                                        } catch (IOException e) {
+                                            throw new IllegalArgumentException(e);
+                                        }
+                                        Scene scene = new Scene(root);
+                                        primaryStage.setScene(scene);
+                                        primaryStage.setTitle("Waiting");
+                                        primaryStage.show();
+                                    }
+                                });
+                                break;
+
+                        }
                         break;
                 }
             } catch (ParseException e){
@@ -132,25 +154,11 @@ public class Client extends Thread {
             if (!socket.isClosed()) {
                 socket.close();
                 in.close();
-                writer.close();
+                out.close();
             }
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
-    }
-
-    public String read() {
-        String input = null;
-        try {
-            input = in.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return input;
-    }
-
-    public void write(String output) {
-        out.println(output);
     }
 
 }

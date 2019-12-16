@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.controller.RoomFXMLController">
@@ -13,19 +14,6 @@
             <Font size="28.0" />
          </font>
       </Label>
-      <Button fx:id="btn1" layoutX="67.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="П" />
-      <Button fx:id="btn2" layoutX="119.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="Р" />
-      <Button fx:id="btn3" layoutX="170.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="О" />
-      <Button fx:id="btn4" layoutX="219.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="С" />
-      <Button fx:id="btn5" layoutX="269.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="Т" />
-      <Button fx:id="btn6" layoutX="320.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="О" />
-      <Button fx:id="btn7" layoutX="370.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="К" />
-      <Button fx:id="btn8" layoutX="420.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="В" />
-      <Button fx:id="btn9" layoutX="469.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="А" />
-      <Button fx:id="btn10" layoutX="517.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="Ш" />
-      <Button fx:id="btn11" layoutX="566.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="И" />
-      <Button fx:id="btn12" layoutX="614.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="Н" />
-      <Button fx:id="btn13" layoutX="662.0" layoutY="194.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="46.0" text="О" />
       <Label fx:id="player2" layoutX="477.0" layoutY="52.0" text="Ожидание игрока">
          <font>
             <Font size="28.0" />
@@ -36,5 +24,7 @@
             <Font name="Candara" size="19.0" />
          </font>
       </Label>
+      <HBox fx:id="buttonBox" layoutX="90.0" layoutY="190.0" prefHeight="40.0" prefWidth="598.0">
+      </HBox>
    </children>
 </AnchorPane>
