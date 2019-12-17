@@ -30,4 +30,14 @@ public class JSONService {
         return response.toJSONString();
     }
 
+    public String sendUsername(String name) {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("command", "get username");
+        payload.put("username", name);
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
 }

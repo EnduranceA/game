@@ -17,14 +17,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-public class Client  {
-
+public class Client {
     private final int PORT = 1337;
     private String host = "localhost";
     private Socket socket;
     private BufferedReader in;
     private PrintWriter out;
     private String userName;
+    public static String rival;
 
     private RequestService requestService;
     private ResponseService responseService;
@@ -44,8 +44,6 @@ public class Client  {
             this.requestService = new RequestService();
             this.responseService = new ResponseService();
             this.primaryStage = MainApp.primaryStage;
-            //1 означает, что игрок ходит первым
-//            status = Integer.parseInt(in.readLine()) == 1;
         } catch (IOException e) {
             throw new IllegalArgumentException(e);
         }
@@ -63,25 +61,8 @@ public class Client  {
 
         @Override
         public void run() {
-            //TODO: отправить имя игрока на сервер
-//            try {
-//                while (true) {
-//                    String str = reader.readLine();
-//                    readRequest(str);
-//                }
-//            } catch (IOException e) {
-//                throw new IllegalArgumentException(e);
-//            }
-        }
-
-        private void readRequest(String str) {
-//            try {
-//                switch (str) {
-//                    case ("login"):
-//
-//                }
-//            }
-
+            //отправить имя игрока на сервер
+            out.println(jsonService.getUsername(userName));
         }
     }
 
@@ -99,8 +80,7 @@ public class Client  {
         public void run() {
             try {
                 while (true) {
-                    String str = in.readLine();
-                    readResponse(str);
+                    readResponse(in.readLine());
                 }
             }
             catch (IOException e) {
@@ -133,12 +113,14 @@ public class Client  {
                                         }
                                         Scene scene = new Scene(root);
                                         primaryStage.setScene(scene);
-                                        primaryStage.setTitle("Waiting");
+                                        primaryStage.setTitle("Game");
                                         primaryStage.show();
                                     }
                                 });
                                 break;
-
+                            case ("get username"):
+                                rival = payload.get("username").toString();
+                                break;
                         }
                         break;
                 }

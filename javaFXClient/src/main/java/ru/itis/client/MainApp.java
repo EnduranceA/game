@@ -11,10 +11,6 @@ public class MainApp extends Application {
 
     public static Stage primaryStage;
 
-    //все сцены
-    private static Parent menu;
-    private static Parent room;
-
     public static void main(String[] args) {
         launch(args);
     }
@@ -23,7 +19,7 @@ public class MainApp extends Application {
     public void start(Stage primaryStage) throws Exception {
         MainApp.primaryStage = primaryStage;
         //primaryStage - графическое окно с несколькими scene
-        menu = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
+        Parent menu = FXMLLoader.load(getClass().getResource("/fxml/menu.fxml"));
         Scene scene = new Scene(menu);
         scene.getStylesheets().add("/styles/styles.css");
 

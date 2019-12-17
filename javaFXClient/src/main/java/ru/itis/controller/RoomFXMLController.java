@@ -5,7 +5,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 import ru.itis.client.Client;
 
 import java.net.URL;
@@ -15,7 +14,6 @@ import java.util.ResourceBundle;
 public class RoomFXMLController implements Initializable {
 
     private ArrayList<Button> buttons;
-    private Stage primaryStage;
 
     @FXML
     private HBox buttonBox;
@@ -23,10 +21,15 @@ public class RoomFXMLController implements Initializable {
     @FXML
     private Label player1;
 
+    @FXML
+    private Label player2;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.buttons = new ArrayList<>();
         player1.setText(MenuFXMLController.name);
+        player2.setText(Client.rival);
+        System.out.println("player2.setText");
         addAllButtons();
         start();
     }
@@ -56,8 +59,8 @@ public class RoomFXMLController implements Initializable {
     private Button createWordButton(String letter){
         Button button = new Button(letter);
         button.setMnemonicParsing(false);
-        button.setPrefHeight(40.0);
-        button.prefWidth(46.0);
+        button.setPrefHeight(45.0);
+        button.prefWidth(50.0);
         return button;
     }
 
