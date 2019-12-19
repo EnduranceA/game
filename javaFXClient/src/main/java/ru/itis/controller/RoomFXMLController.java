@@ -161,4 +161,5 @@ public class RoomFXMLController implements Initializable {
         }
         client.send(word);
         return word;
+    }
 }
