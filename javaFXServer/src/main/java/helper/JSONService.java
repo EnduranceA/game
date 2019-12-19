@@ -30,14 +30,33 @@ public class JSONService {
         return response.toJSONString();
     }
 
-    public String sendUsername(String name) {
+    public String sendMessage(String message) {
         JSONObject response = new JSONObject();
-        response.put("header", "command");
+        response.put("header", "message");
         JSONObject payload = new JSONObject();
-        payload.put("command", "get username");
-        payload.put("username", name);
+        payload.put("text", message);
         response.put("payload", payload);
         return response.toJSONString();
     }
 
+    public String sendCommand(boolean value) {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("the end", value);
+        payload.put("command", "the end of game");
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+
+    public String sendNameOfWinner(String userName) {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("name", userName);
+        payload.put("command", "get name of winner");
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
 }

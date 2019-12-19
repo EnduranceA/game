@@ -4,12 +4,10 @@ import javafx.animation.Animation;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -21,24 +19,22 @@ import java.util.ResourceBundle;
 
 public class ExpectationFXMLController implements Initializable {
 
-    private Client client;
 
     @FXML
     public AnchorPane room;
-
     @FXML
     public Label expLabel;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        this.client = new Client();
+
     }
 
     @FXML
     public void setMouseOnClicked() {
         room.setOnMouseClicked(event ->
         {
-            Circle r = new Circle(10, Color.DEEPPINK);
+            Circle r = new Circle(15, Color.DEEPPINK);
 
             r.setCenterX(event.getX());
             r.setCenterY(event.getY());

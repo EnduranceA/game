@@ -45,7 +45,9 @@ public class Server {
             while (true) {
                 try {
                     clientSocket1 = serverSocket.accept();
+                    System.out.println("1 user");
                     clientSocket2 = serverSocket.accept();
+                    System.out.println("2 user");
                     new RoomHandler(clientSocket1, clientSocket2);
                 } catch (IOException e) {
                     throw new IllegalArgumentException(e);
