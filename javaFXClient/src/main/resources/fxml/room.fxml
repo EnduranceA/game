@@ -7,34 +7,38 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="667.0" prefWidth="778.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.controller.RoomFXMLController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="619.0" prefWidth="753.0" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itis.controller.RoomFXMLController">
    <children>
-      <Button fx:id="submitButton" layoutX="304.0" layoutY="599.0" mnemonicParsing="false" onMouseClicked="#setOnMouseClicked" prefHeight="31.0" prefWidth="142.0" text="Отправить" />
-      <Label fx:id="player1" layoutX="66.0" layoutY="55.0" text="Ожидание игрока">
+      <Label fx:id="player1" layoutX="66.0" layoutY="55.0" text="Ожидание игрока" textAlignment="CENTER" textFill="#b659ff" textOverrun="CENTER_ELLIPSIS">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Label fx:id="player2" layoutX="456.0" layoutY="54.0" text="Ожидание игрока">
+      <Label fx:id="player2" layoutX="455.0" layoutY="55.0" text="Ожидание игрока" textAlignment="CENTER" textFill="#b659ff">
          <font>
             <Font size="28.0" />
          </font>
       </Label>
-      <Label layoutX="78.0" layoutY="548.0" prefHeight="23.0" prefWidth="104.0" text="Ваше слово:">
+      <Label layoutX="76.0" layoutY="510.0" prefHeight="23.0" prefWidth="104.0" text="Ваше слово:">
          <font>
             <Font name="Candara" size="19.0" />
          </font>
       </Label>
       <HBox fx:id="buttonBox" layoutX="76.0" layoutY="230.0" prefHeight="40.0" prefWidth="598.0">
       </HBox>
-      <Label fx:id="moves1" layoutX="223.0" layoutY="111.0" prefHeight="23.0" prefWidth="25.0" />
-      <Label layoutX="90.0" layoutY="113.0" text="Количество ходов:" />
-      <Label layoutX="482.0" layoutY="113.0" text="Количество ходов:" />
-      <Label fx:id="moves2" layoutX="615.0" layoutY="112.0" prefHeight="23.0" prefWidth="25.0" />
+      <Label fx:id="moves1" layoutX="223.0" layoutY="100.0" prefHeight="23.0" prefWidth="25.0" />
+      <Label layoutX="87.0" layoutY="101.0" prefHeight="21.0" prefWidth="136.0" text="Количество ходов:" />
+      <Label layoutX="486.0" layoutY="101.0" text="Количество ходов:" />
+      <Label fx:id="moves2" layoutX="618.0" layoutY="100.0" prefHeight="23.0" prefWidth="25.0" />
       <VBox layoutX="71.0" layoutY="255.0" prefHeight="260.0" prefWidth="223.0" />
       <VBox layoutX="481.0" layoutY="250.0" prefHeight="260.0" prefWidth="231.0" />
-      <HBox fx:id="composedBox" layoutX="194.0" layoutY="534.0" prefHeight="40.0" prefWidth="449.0" />
-      <Label fx:id="labelOfStatus" layoutX="271.0" layoutY="163.0" prefHeight="21.0" prefWidth="175.0" />
-      <Label fx:id="answerFromServer" layoutX="512.0" layoutY="604.0" />
+      <HBox fx:id="composedBox" layoutX="183.0" layoutY="502.0" prefHeight="40.0" prefWidth="449.0" />
+      <Label fx:id="labelOfStatus" layoutX="193.0" layoutY="153.0" prefHeight="31.0" prefWidth="328.0" />
+      <Label fx:id="answerFromServer" layoutX="223.0" layoutY="373.0" prefHeight="40.0" prefWidth="264.0" />
+      <Button fx:id="submitButton" layoutX="288.0" layoutY="558.0" mnemonicParsing="false" onMouseClicked="#setOnMouseClicked" prefHeight="31.0" prefWidth="142.0" style="-fx-background-color: #b659ff;" text="Отправить" textAlignment="CENTER">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

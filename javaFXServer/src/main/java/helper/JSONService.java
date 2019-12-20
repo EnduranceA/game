@@ -21,11 +21,59 @@ public class JSONService {
         return response.toJSONString();
     }
 
-    public String getCommandStartGame() {
+    public String sendResultOfCheckWord(boolean result) {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("command", "check result");
+        payload.put("check", result);
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String sendUsername(String name) {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("command", "get username");
+        payload.put("username", name);
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+
+    public String getCommandStartGameWithYourTurn() {
         JSONObject response = new JSONObject();
         response.put("header", "command");
         JSONObject payload = new JSONObject();
         payload.put("command", "start game");
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String getCommandStartGameWithWait() {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("command", "start game wait");
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String getCommandWait() {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("command", "wait");
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String getCommandYourTurn() {
+        JSONObject response = new JSONObject();
+        response.put("header", "command");
+        JSONObject payload = new JSONObject();
+        payload.put("command", "your turn");
         response.put("payload", payload);
         return response.toJSONString();
     }
@@ -45,6 +93,24 @@ public class JSONService {
         JSONObject payload = new JSONObject();
         payload.put("the end", value);
         payload.put("command", "the end of game");
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String sendStatus(int status) {
+        JSONObject response = new JSONObject();
+        response.put("header", "status");
+        JSONObject payload = new JSONObject();
+        payload.put("status", status);
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String sendIsOver(int isOver) {
+        JSONObject response = new JSONObject();
+        response.put("header", "isOver");
+        JSONObject payload = new JSONObject();
+        payload.put("is over", isOver);
         response.put("payload", payload);
         return response.toJSONString();
     }

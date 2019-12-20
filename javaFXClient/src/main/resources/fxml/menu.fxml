@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="376.0" prefWidth="565.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.itis.controller.MenuFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="376.0" prefWidth="565.0" style="-fx-background-color: pink;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="itis.controller.MenuFXMLController">
     <children>
         <Button layoutX="230.0" layoutY="239.0" onAction="#onClickPlay" prefHeight="31.0" prefWidth="105.0" text="ИГРАТЬ" textAlignment="CENTER" textOverrun="CENTER_WORD_ELLIPSIS" />
       <Label layoutX="77.0" layoutY="116.0" prefHeight="66.0" prefWidth="423.0" text="СЛОВА ИЗ СЛОВ" textAlignment="CENTER">
