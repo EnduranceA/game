@@ -125,4 +125,22 @@ public class JSONService {
         response.put("payload", payload);
         return response.toJSONString();
     }
+
+    public String sendRating(int rating) {
+        JSONObject response = new JSONObject();
+        response.put("header", "rating");
+        JSONObject payload = new JSONObject();
+        payload.put("rating", rating);
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
+
+    public String sendRatingOfRival(int rating) {
+        JSONObject response = new JSONObject();
+        response.put("header", "rival rating");
+        JSONObject payload = new JSONObject();
+        payload.put("rating", rating);
+        response.put("payload", payload);
+        return response.toJSONString();
+    }
 }

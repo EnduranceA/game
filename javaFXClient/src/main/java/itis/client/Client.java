@@ -41,8 +41,5 @@ public class Client {
     private void start(){
         responseService.sendUserNameToServer(userName);
     }
-
-
-
 }
 

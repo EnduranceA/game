@@ -1,6 +1,5 @@
 package itis.controller;
 
-import itis.helper.RequestService;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,7 +15,7 @@ import java.util.ResourceBundle;
 public class RoomFXMLController implements Initializable {
 
     private ArrayList<Button> buttons;
-    private static String word;
+    private static String word = "";
 
     @FXML
     private Button submitButton;
@@ -29,11 +28,11 @@ public class RoomFXMLController implements Initializable {
     @FXML
     private Label player1;
     @FXML
-    private Label moves1;
+    private Label rating1;
     @FXML
     private Label player2;
     @FXML
-    private Label moves2;
+    private Label rating2;
     @FXML
     private HBox composedBox;
 
@@ -46,6 +45,8 @@ public class RoomFXMLController implements Initializable {
     private void start() {
         player1.setText(MenuFXMLController.name);
         player2.setText(Client.rival);
+        rating1.setText("Текущий рейтинг: "+ 0);
+        rating2.setText("Текущий рейтинг: "+ 0);
         addAllButtons();
     }
 
@@ -61,6 +62,14 @@ public class RoomFXMLController implements Initializable {
             labelOfStatus.setText("Ход противника!");
             lockButtons();
         });
+    }
+
+    public void changeRating(long rating) {
+        Platform.runLater(() -> rating1.setText("Текущий рейтинг: " + rating));
+    }
+
+    public void changeRatingOfRival(long rating) {
+        Platform.runLater(() -> rating2.setText("Текущий рейтинг: " + rating));
     }
 
     private void lockButtons() {

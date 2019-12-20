@@ -1,6 +1,5 @@
 package service;
 
-import models.MainWord;
 import repositories.MainWordRepository;
 import repositories.WordRepository;
 import server.Server;
@@ -9,10 +8,7 @@ import java.util.ArrayList;
 
 public class GameService {
 
-    public int countStep = 0;
-    private static final int MAX_STEP = 6;
-    public boolean isOver = false;
-    public String mainWord;
+    private String mainWord;
     private ArrayList<String> composedWords;
     private WordRepository wordRepository;
     private MainWordRepository mainWordRepository;
@@ -29,18 +25,14 @@ public class GameService {
         return mainWord;
     }
 
-    public boolean check(String word) {
+    public int check(String word) {
         if(!isExist(word)) {
             if (wordRepository.isExist(word)) {
                 composedWords.add(word);
-                countStep++;
-                if (countStep == MAX_STEP) {
-                    isOver = true;
-                }
-                return true;
+                return word.length();
             }
         }
-        return false;
+        return 0;
     }
 
     private boolean isExist(String word) {

@@ -74,7 +74,7 @@ public class SceneManager {
     }
 
     public static void setEndScene(){
-        Platform.runLater(() -> primaryStage.setScene(createMenuScene()));
+        Platform.runLater(() -> primaryStage.setScene(createEndScene()));
     }
 
     private static Scene createEndScene(){

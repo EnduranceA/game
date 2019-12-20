@@ -33,7 +33,7 @@ public class MenuFXMLController implements Initializable {
     }
 
     @FXML
-    public void onClickPlay(ActionEvent event) throws IOException {
+    public void onClickPlay(ActionEvent event) {
         name = userName.getText();
         SceneManager.setExpectationScene();
     }

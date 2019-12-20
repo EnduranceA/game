@@ -25,7 +25,6 @@ public class RequestService extends Thread {
         while (true) {
             try {
                 String request = in.readLine();
-                System.out.println(request);
                 readRequest(request);
             } catch (IOException e) {
                 throw new IllegalArgumentException(e);
@@ -51,7 +50,6 @@ public class RequestService extends Thread {
                             break;
                         case ("get main word"):
                             Client.mainWord = payload.get("word").toString();
-                            System.out.println(Client.mainWord);
                             break;
                         case ("get username"):
                             Client.rival = payload.get("username").toString();
@@ -75,6 +73,14 @@ public class RequestService extends Thread {
                     break;
                 case ("isOver"):
                     Client.isOver = (long) payload.get("is over");
+                    break;
+                case ("rating"):
+                    long rating = (long) payload.get("rating");
+                    SceneManager.gameController.changeRating(rating);
+                    break;
+                case ("rival rating"):
+                    long ratingOfRival = (long) payload.get("rating");
+                    SceneManager.gameController.changeRatingOfRival(ratingOfRival);
                     break;
             }
         } catch (ParseException e) {

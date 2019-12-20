@@ -15,19 +15,18 @@ public class RoomHandler extends Thread{
     private GameService gameService;
     private JSONService jsonService;
 
-    private boolean state = false;//ходит первый
     private int turnCount = 3;
 
     //ввод и вывод данных для 1 клиента
     private PrintWriter out1;
     private BufferedReader in1;
-    private int rating1;
+    private int rating1 = 0;
     private String userName1;
 
     //ввод и вывод данных для 2 клиента
     private PrintWriter out2;
     private BufferedReader in2;
-    private int rating2;
+    private int rating2 = 0;
     private String userName2;
 
     public RoomHandler(Socket client1, Socket client2) {
@@ -72,21 +71,24 @@ public class RoomHandler extends Thread{
             out2.println(jsonService.getCommandStartGameWithWait());
 
             while(turnCount > 0) {
+                rating1 += gameService.check(in1.readLine());
 
-                gameService.check(in1.readLine());
-                //брабатываем слово тут
+                out1.println(jsonService.sendRating(rating1));
+                out2.println(jsonService.sendRatingOfRival(rating1));
 
                 out2.println(jsonService.getCommandYourTurn());
                 out1.println(jsonService.getCommandWait());
 
-                gameService.check(in2.readLine());
+                rating2 += gameService.check(in2.readLine());
+
+                out2.println(jsonService.sendRating(rating2));
+                out1.println(jsonService.sendRatingOfRival(rating2));
 
                 out1.println(jsonService.getCommandYourTurn());
                 out2.println(jsonService.getCommandWait());
 
                 turnCount--;
             }
-
             if(rating1 > rating2){
                 out1.println(jsonService.sendNameOfWinner(userName1));
                 out2.println(jsonService.sendNameOfWinner(userName1));
@@ -94,54 +96,8 @@ public class RoomHandler extends Thread{
                 out1.println(jsonService.sendNameOfWinner(userName2));
                 out2.println(jsonService.sendNameOfWinner(userName2));
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
-//    private boolean listen(BufferedReader in, PrintWriter out1, PrintWriter out2) {
-//        try {
-//            String word = in.readLine();
-//            System.out.println("WORD "+ word);
-//            //проверяем, что слово не было придумано раннее и содержится в БД
-//            if (gameService.check(word)) {
-//                //был выполнен последний ход
-//                if (gameService.isOver) {
-//                    out1.println(jsonService.sendIsOver(1));
-//                    out2.println(jsonService.sendIsOver(1));
-//                    //далее отправляем информацию о том, кто победил, а кто проиграл
-//                    if (rating1 >= rating2) {
-//                        out1.println(jsonService.sendNameOfWinner(userName1));
-//                        out2.println(jsonService.sendNameOfWinner(userName1));
-//                    } else {
-//                        out1.println(jsonService.sendNameOfWinner(userName2));
-//                        out2.println(jsonService.sendNameOfWinner(userName2));
-//                    }
-//                    return false;
-//                } else {
-//                    //отправляем информацию о продолжении игры
-//                    out1.println(jsonService.sendIsOver(0));
-//                    out2.println(jsonService.sendIsOver(0));
-//                    out1.println(jsonService.sendResultOfCheckWord(true));//успешно добавлено в лист
-//                    state = !state;
-//                }
-//            }
-//            //слово было уже составлено
-//            else {
-//                //отправляем информацию о продолжении игры
-//                out1.println(jsonService.sendIsOver(0));
-//                out2.println(jsonService.sendIsOver(0));
-//                out1.println(jsonService.sendResultOfCheckWord(false));//недобавлено в лист
-//                return false;
-//            }
-//
-//        } catch (IOException e) {
-//            throw new IllegalArgumentException(e);
-//        }
-//        return true;
-//    }
-
-
 }
